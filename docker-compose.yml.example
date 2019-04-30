@@ -1,0 +1,53 @@
+###############################################################################
+#                          Generated on phpdocker.io                          #
+###############################################################################
+version: "3.1"
+services:
+
+    #PHP Service
+    php-fpm:
+      build: phpdocker/php-fpm
+      container_name: au-php-fpm
+      restart: unless-stopped
+      working_dir: /application
+      volumes:
+        - .:/application
+        - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.2/fpm/conf.d/99-overrides.ini
+      environment:
+      - "DB_PORT=3306"
+      - "DB_HOST=mysql"
+
+    #MySQL Service
+    mysql:
+      image: mysql:5.7
+      container_name: au-mysql
+      working_dir: /application
+      volumes:
+        - .:/application
+      environment:
+        - MYSQL_ROOT_PASSWORD=secreto
+        - MYSQL_DATABASE=database
+        - MYSQL_USER=user
+        - MYSQL_PASSWORD=secreto
+      ports:
+        - "3306:3306"
+
+    #Nginx Service
+    webserver:
+      image: nginx:alpine
+      container_name: au-webserver
+      restart: unless-stopped
+      working_dir: /application
+      volumes:
+          - .:/application
+          - ./phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      ports:
+       - "80:80"
+       - "443:443"
+
+    adminer:
+      image: adminer
+      restart: always
+      ports:
+        - "8080:8080"
+
