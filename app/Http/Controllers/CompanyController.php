@@ -29,7 +29,11 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('company.store');
+        $salida = [
+            'type' => 'store',
+            'company' => ""
+        ];
+        return view('company.actions', $salida);
     }
 
     /**
@@ -43,12 +47,10 @@ class CompanyController extends Controller
         $company = Company::create($request->input());
         if ($request->logo) {
             //Log::debug('tiene logo');
-            $company->logo = $request->logo->store('images');
+            $company->logo = $request->logo->store('', 'images');
             $company->save();
         }
-        //Log::debug($company);
-        return view('company.index');
-
+        return \redirect()->route('company.index');
     }
 
     /**
@@ -57,9 +59,13 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Company $company)
     {
-        //
+        $salida = [
+            'type' => 'show',
+            'company' => $company
+        ];
+        return view('company.actions', $salida);
     }
 
     /**
@@ -70,7 +76,11 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        Log::debug($company);
+        $salida = [
+            'type' => 'update',
+            'company' => $company
+        ];
+        return view('company.actions', $salida);
     }
 
     /**
@@ -82,7 +92,9 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        //
+        $company->update($request->input());
+        //TODO: Delete old image and put the new.
+        return \redirect()->route('company.index');
     }
 
     /**
@@ -93,7 +105,7 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //$company->delete()
-        return "DESTROY";
+        $company->delete();
+        return \redirect()->route('company.index');
     }
 }
