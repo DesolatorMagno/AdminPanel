@@ -39,9 +39,11 @@
                                 @endforeach
                         </tbody>
                     </table>
+                    <a href="{{ route('welcome') }}" class="btn btn-outline-dark">Back</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 @endsection
