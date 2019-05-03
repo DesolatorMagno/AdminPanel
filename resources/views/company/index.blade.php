@@ -39,6 +39,7 @@
                                 @endforeach
                         </tbody>
                     </table>
+                    {{ $companies->links() }}
                     <a href="{{ route('welcome') }}" class="btn btn-outline-dark">Back</a>
                 </div>
             </div>

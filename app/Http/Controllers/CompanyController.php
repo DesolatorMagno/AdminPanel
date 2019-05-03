@@ -17,7 +17,7 @@ class CompanyController extends Controller
     public function index()
     {
         $salida = [
-            'companies' => Company::all(),
+            'companies' => Company::simplePaginate(10),
         ];
         return view('company.index', $salida);
     }
