@@ -13,24 +13,30 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Address</th>
                                 <th>Website</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th>Company 1</th>
-                                <th>Address</th>
-                                <th>Website</th>
-                                <th>Actions</th>
-                            </tr>
-                            <tr>
-                                <th>Name</th>
-                                <th>Address</th>
-                                <th>Website</th>
-                                <th>Actions</th>
-                            </tr>
+                                @foreach ($companies as $company)
+                                <tr>
+                                    <th>{{ $company->name }}</th>
+                                    <th><a href="{{ $company->website }}">{{ $company->website }}</a></th>
+                                    <th>
+                                        <div class="btn-toolbar" role="toolbar" aria-label="">
+                                            <div class="btn-group" role="group" aria-label="">
+                                                <a href="{{ route('company.show', ['id'=>$company->id]) }}" class="btn btn-sm btn-info">Details</a>
+                                                <a href="{{ route('company.edit', ['id'=>$company->id]) }}" class="btn btn-sm btn-success">Edit</a>
+                                                <form action="{{ route('company.destroy', $company->id) }}" method="POST">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                                @endforeach
                         </tbody>
                     </table>
                 </div>

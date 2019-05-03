@@ -16,7 +16,10 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        return view('company.index');
+        $salida = [
+            'companies' => Company::all(),
+        ];
+        return view('company.index', $salida);
     }
 
     /**
@@ -65,9 +68,9 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Company $company)
     {
-        //
+        Log::debug($company);
     }
 
     /**
@@ -77,7 +80,7 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Company $company)
     {
         //
     }
@@ -88,8 +91,9 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Company $company)
     {
-        //
+        //$company->delete()
+        return "DESTROY";
     }
 }
