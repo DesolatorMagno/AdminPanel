@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">Company Creation</div>
+            <div class="card-header">Company @lang("actions.title_$type")</div>
                 <div class="card-body">
 
                     <form action="{{ $type == 'store' ? route('company.store') : route('company.update', $company->id) }}" role="form" method="post" enctype="multipart/form-data">
@@ -51,7 +51,7 @@
                         </div>
                         @endif
                         <a href="{{ route('company.index') }}" class="btn btn-outline-dark">Back</a>
-                        <button type="submit" class="btn btn-outline-primary" {{ $type== "show" ? 'disabled hidden' : ''}}>Submit</button>
+                    <button type="submit" class="btn btn-outline-primary" {{ $type== "show" ? 'disabled hidden' : ''}}>@lang("actions.button_$type")</button>
                     </form>
                 </div>
             </div>
