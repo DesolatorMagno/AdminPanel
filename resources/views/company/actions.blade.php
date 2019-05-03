@@ -35,7 +35,7 @@
 
                         @if ($company)
                         <div>
-                            <img src="{{ $company->logo ? "$company->LogoUrl" : '' }}" alt="">
+                            <img src="{{ $company->logo ? "$company->LogoUrl" : '' }}" alt="Company Logo" class="img-fluid img">
                         </div>
 
                         @endif
@@ -50,7 +50,9 @@
                         @enderror
                         </div>
                         @endif
+                        <hr>
                         <a href="{{ route('company.index') }}" class="btn btn-outline-dark">Back</a>
+
                     <button type="submit" class="btn btn-outline-primary" {{ $type== "show" ? 'disabled hidden' : ''}}>@lang("actions.button_$type")</button>
                     </form>
                 </div>
