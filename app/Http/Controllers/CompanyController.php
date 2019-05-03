@@ -90,7 +90,7 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(StoreCompany $request, Company $company)
     {
         $company->update($request->input());
         if ($request->hasFile('logo')) {
