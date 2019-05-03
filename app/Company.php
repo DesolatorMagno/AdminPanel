@@ -14,4 +14,9 @@ class Company extends Model
     protected $fillable = [
         'name', 'website',
     ];
+
+    public function getLogoUrlAttribute()
+    {
+        return \Storage::disk('images')->url($this->logo);
+    }
 }
