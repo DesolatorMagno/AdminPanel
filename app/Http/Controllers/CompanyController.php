@@ -45,7 +45,7 @@ class CompanyController extends Controller
     public function store(StoreCompany $request)
     {
         $company = Company::create($request->input());
-        if ($request->logo) {
+        if ($request->hasFile('logo')) {
             //Log::debug('tiene logo');
             $company->logo = $request->logo->store('', 'images');
             $company->save();
@@ -93,7 +93,11 @@ class CompanyController extends Controller
     public function update(Request $request, Company $company)
     {
         $company->update($request->input());
-        //TODO: Delete old image and put the new.
+        if ($request->hasFile('logo')) {
+            \Storage::disk('images')->delete($company->logo);
+            $company->logo = $request->logo->store('', 'images');
+            $company->save();
+        }
         return \redirect()->route('company.index');
     }
 
