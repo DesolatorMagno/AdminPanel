@@ -11,24 +11,36 @@
                     <form action="{{ route('company.store') }}" role="form" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                          <label for="name">Name</label>
-                          <input type="text" class="form-control" name="name" id="" aria-describedby="helpId" placeholder="Name">
-                          <small id="helpIdName" class="form-text text-muted">The name from the new Company</small>
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="" placeholder="Name" value="{{ Request::old('name', '') }}">
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="website">Website</label>
-                            <input type="text" class="form-control" name="website" id="" aria-describedby="helpIdWebsite" placeholder="Website">
-                            <small id="helpIdWebsite" class="form-text text-muted">The Website from the new Company</small>
+                            <input type="text" class="form-control @error('website') is-invalid @enderror" name="website" id="" placeholder="Website" value="{{ Request::old('website', '') }}">
+                            @error('website')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                           <label for="logo">Logo</label>
-                          <input type="file" class="form-control-file" name="logo" id="" placeholder="" aria-describedby="fileHelpId" accept="jpg">
-                          <small id="fileHelpId" class="form-text text-muted">The logo goes here.</small>
+                          <input type="file" class="form-control-file @error('logo') is-invalid @enderror" name="logo" id="" placeholder="" accept="jpg"  value="{{ Request::old('logo', '') }}">
+                          @error('logo')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-outline-dark">Submit</button>
+                        <button type="submit" class="btn btn-outline-primary">Submit</button>
                     </form>
                 </div>
             </div>
