@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CompanyController extends Controller
 {
@@ -23,7 +25,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('company.store');
     }
 
     /**
@@ -34,7 +36,14 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //TODO: Validation
+        $company = Company::create($request->input());
+        if ($request->logo) {
+            Log::debug('tiene logo');
+            $company->logo = $request->logo->store('images');
+            $company->save();
+        }
+        Log::debug($company);
     }
 
     /**

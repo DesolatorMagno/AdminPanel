@@ -18,6 +18,15 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+    html, body, card {
+        background-color: #323232;
+    }
+    .btn-add {
+        margin-bottom: 1.5em;
+    }
+    </style>
+
 </head>
 <body>
     <div id="app">
