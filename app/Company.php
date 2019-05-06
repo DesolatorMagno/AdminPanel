@@ -19,4 +19,9 @@ class Company extends Model
     {
         return \Storage::disk('images')->url($this->logo);
     }
+
+    public function employees()
+    {
+        return $this->hasMany('App\Employee');
+    }
 }
