@@ -11,7 +11,7 @@
                             {{ trans('general.new', ['model' => trans('general.company')]) }}
                     </a>
                     <table class="table">
-                        <thead>
+                        <thead class="thead-light">
                             <tr>
                                 <th>@lang('attributes.name')</th>
                                 <th>@lang('attributes.website')</th>
@@ -26,7 +26,7 @@
                                     <th>
                                         <div class="btn-toolbar" role="toolbar" aria-label="">
                                             <div class="btn-group" role="group" aria-label="">
-                                                <a href="{{ route('company.show', ['id'=>$company->id]) }}" class="btn btn-sm btn-info">@lang('general.back')</a>
+                                                <a href="{{ route('company.show', ['id'=>$company->id]) }}" class="btn btn-sm btn-info">@lang('general.details')</a>
                                                 <a href="{{ route('company.edit', ['id'=>$company->id]) }}" class="btn btn-sm btn-success">@lang('general.edit')</a>
                                                 <form action="{{ route('company.destroy', $company->id) }}" method="POST">
                                                     @method('DELETE')

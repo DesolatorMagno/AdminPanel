@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Employee;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreEmployee;
 
 class EmployeeController extends Controller
 {
@@ -18,7 +20,10 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        return view('employe.index');
+        $salida = [
+            'employees' => Employee::simplePaginate(10),
+        ];
+        return view('employee.index', $salida);
     }
 
     /**
@@ -37,7 +42,7 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreEmployee $request)
     {
         //
     }
@@ -48,7 +53,7 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Employee $employee)
     {
         //
     }
@@ -59,7 +64,7 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Employee $employee)
     {
         //
     }
@@ -71,7 +76,7 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreEmployee $request, Employee $employee)
     {
         //
     }
@@ -82,7 +87,7 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Employee $employee)
     {
         //
     }

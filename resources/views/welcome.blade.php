@@ -81,7 +81,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{ route('employe.index') }}">@lang('general.employees')</a>
+                    <a href="{{ route('employee.index') }}">@lang('general.employees')</a>
                     <a href="{{ route('company.index') }}">@lang('general.companies')</a>
                 </div>
             </div>
