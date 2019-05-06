@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Company;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreCompany;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
@@ -36,8 +35,8 @@ class CompanyController extends Controller
     public function create()
     {
         $salida = [
-            'type' => 'store',
-            'company' => ""
+            'type'    => 'store',
+            'company' => "",
         ];
         return view('company.actions', $salida);
     }
@@ -68,8 +67,8 @@ class CompanyController extends Controller
     public function show(Company $company)
     {
         $salida = [
-            'type' => 'show',
-            'company' => $company
+            'type'    => 'show',
+            'company' => $company,
         ];
         return view('company.actions', $salida);
     }
@@ -83,8 +82,8 @@ class CompanyController extends Controller
     public function edit(Company $company)
     {
         $salida = [
-            'type' => 'update',
-            'company' => $company
+            'type'    => 'update',
+            'company' => $company,
         ];
         return view('company.actions', $salida);
     }
