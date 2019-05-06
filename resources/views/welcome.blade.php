@@ -68,7 +68,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">{{ trans('general.home') }}Home</a>
+                        <a href="{{ url('/home') }}">@lang('general.home')</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                     @endauth
@@ -81,8 +81,8 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{ route('employe.index') }}">{{ trans('general.employees') }}</a>
-                    <a href="{{ route('company.index') }}">{{ trans('general.companies') }}</a>
+                    <a href="{{ route('employe.index') }}">@lang('general.employees')</a>
+                    <a href="{{ route('company.index') }}">@lang('general.companies')</a>
                 </div>
             </div>
         </div>

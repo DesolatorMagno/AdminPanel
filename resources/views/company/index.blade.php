@@ -5,16 +5,17 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">Company List</div>
+                <div class="card-header">{{ trans('general.company') }} {{ trans('general.list') }}</div>
                 <div class="card-body">
-                    <a href="{{ route('company.create') }}" class="btn btn-outline-primary btn-add">New Company</a>
+                    <a href="{{ route('company.create') }}" class="btn btn-outline-primary btn-add">
+                            {{ trans('general.new', ['model' => trans('general.company')]) }}
+                    </a>
                     <table class="table">
-
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Website</th>
-                                <th>Actions</th>
+                                <th>@lang('attributes.name')</th>
+                                <th>@lang('attributes.website')</th>
+                                <th>@lang('general.actions')</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -25,12 +26,12 @@
                                     <th>
                                         <div class="btn-toolbar" role="toolbar" aria-label="">
                                             <div class="btn-group" role="group" aria-label="">
-                                                <a href="{{ route('company.show', ['id'=>$company->id]) }}" class="btn btn-sm btn-info">Details</a>
-                                                <a href="{{ route('company.edit', ['id'=>$company->id]) }}" class="btn btn-sm btn-success">Edit</a>
+                                                <a href="{{ route('company.show', ['id'=>$company->id]) }}" class="btn btn-sm btn-info">@lang('general.back')</a>
+                                                <a href="{{ route('company.edit', ['id'=>$company->id]) }}" class="btn btn-sm btn-success">@lang('general.edit')</a>
                                                 <form action="{{ route('company.destroy', $company->id) }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                                    <button class="btn btn-sm btn-danger">@lang('general.delete')</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -40,7 +41,7 @@
                         </tbody>
                     </table>
                     {{ $companies->links() }}
-                    <a href="{{ route('welcome') }}" class="btn btn-outline-dark">Back</a>
+                    <a href="{{ route('welcome') }}" class="btn btn-outline-dark">@lang('general.back')</a>
                 </div>
             </div>
         </div>
