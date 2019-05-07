@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Company;
 use App\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Requests\StoreEmployee;
 
 class EmployeeController extends Controller
@@ -33,6 +35,12 @@ class EmployeeController extends Controller
      */
     public function create()
     {
+        $salida = [
+            'type'    => 'store',
+            'employee' => "",
+            "companies" => Company::all()
+        ];
+        return view('employee.actions', $salida);
         //
     }
 
@@ -44,7 +52,9 @@ class EmployeeController extends Controller
      */
     public function store(StoreEmployee $request)
     {
-        //
+        //Log::debug($request);
+        Employee::create($request->input());
+        return \redirect()->route('employee.index');
     }
 
     /**
@@ -55,7 +65,11 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        //
+        $salida = [
+            'type'    => 'show',
+            'employee' => $employee->load('company'),
+        ];
+        return view('employee.actions', $salida);
     }
 
     /**
@@ -66,7 +80,12 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+        $salida = [
+            'type'    => 'update',
+            'employee' => $employee,
+            'companies' => Company::all()
+        ];
+        return view('employee.actions', $salida);
     }
 
     /**
@@ -78,7 +97,11 @@ class EmployeeController extends Controller
      */
     public function update(StoreEmployee $request, Employee $employee)
     {
-        //
+        $employee->update($request->input());
+        $employee->save();
+        Log::debug($employee);
+        Log::debug($request);
+        return \redirect()->route('employee.index');
     }
 
     /**
@@ -89,6 +112,7 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+        $employee->delete();
+        return \redirect()->route('employee.index');
     }
 }
