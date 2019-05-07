@@ -15,7 +15,7 @@
                         @endif
                         <div class="form-group">
                             <label for="name">@lang('attributes.name')</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="" placeholder="Name" value="{{ $company ? $company->name : Request::old('name', '') }}" {{ $type == "show" ? 'disabled' : ''}}>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="" placeholder="Name" value="{{ $company ? old('name', $company->name) : '' }}" {{ $type == "show" ? 'disabled' : ''}}>
                             @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -25,7 +25,7 @@
 
                         <div class="form-group">
                             <label for="website">@lang('attributes.website')</label>
-                            <input type="text" class="form-control @error('website') is-invalid @enderror" name="website" id="" placeholder="Website" value="{{ $company ? $company->website : Request::old('website', '') }}" {{ $type== "show" ? 'disabled' : ''}}>
+                            <input type="text" class="form-control @error('website') is-invalid @enderror" name="website" id="" placeholder="Website" value="{{ $company ? old('website', $company->website) : '' }}" {{ $type== "show" ? 'disabled' : ''}}>
                             @error('website')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

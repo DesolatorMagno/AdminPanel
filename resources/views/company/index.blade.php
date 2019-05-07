@@ -22,7 +22,7 @@
                                 @foreach ($companies as $company)
                                 <tr>
                                     <th>{{ $company->name }}</th>
-                                    <th><a href="{{ $company->website }}">{{ $company->website }}</a></th>
+                                    <th><a href="{{ $company->website }}" target="_blank">{{ $company->website }}</a></th>
                                     <th>
                                         <div class="btn-toolbar" role="toolbar" aria-label="">
                                             <div class="btn-group" role="group" aria-label="">
