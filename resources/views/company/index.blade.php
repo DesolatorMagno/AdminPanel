@@ -10,7 +10,7 @@
                     <a href="{{ route('company.create') }}" class="btn btn-outline-primary btn-add">
                             {{ trans('general.new', ['model' => trans('general.company')]) }}
                     </a>
-                    <table class="table">
+                    <table class="table" id="company-table">
                         <thead class="thead-light">
                             <tr>
                                 <th>@lang('attributes.name')</th>
@@ -19,33 +19,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                                @foreach ($companies as $company)
-                                <tr>
-                                    <th>{{ $company->name }}</th>
-                                    <th><a href="{{ $company->website }}" target="_blank">{{ $company->website }}</a></th>
-                                    <th>
-                                        <div class="btn-toolbar" role="toolbar" aria-label="">
-                                            <div class="btn-group" role="group" aria-label="">
-                                                <a href="{{ route('company.show', ['id'=>$company->id]) }}" class="btn btn-sm btn-info">@lang('general.details')</a>
-                                                <a href="{{ route('company.edit', ['id'=>$company->id]) }}" class="btn btn-sm btn-success">@lang('general.edit')</a>
-                                                <form action="{{ route('company.destroy', $company->id) }}" method="POST">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button class="btn btn-sm btn-danger">@lang('general.delete')</button>
-                                                </form>
-                                            </div>
+                            @foreach ($companies as $company)
+                            <tr>
+                                <td>{{ $company->name }}</td>
+                                <td><a href="{{ $company->website }}" target="_blank">{{ $company->website }}</a></td>
+                                <td>
+                                    <div class="btn-toolbar" role="toolbar" aria-label="">
+                                        <div class="btn-group" role="group" aria-label="">
+                                            <a href="{{ route('company.show', ['id'=>$company->id]) }}" class="btn btn-sm btn-info">@lang('general.details')</a>
+                                            <a href="{{ route('company.edit', ['id'=>$company->id]) }}" class="btn btn-sm btn-success">@lang('general.edit')</a>
+                                            <form action="{{ route('company.destroy', $company->id) }}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button class="btn btn-sm btn-danger">@lang('general.delete')</button>
+                                            </form>
                                         </div>
-                                    </th>
-                                </tr>
-                                @endforeach
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
-                    {{ $companies->links() }}
                     <a href="{{ route('welcome') }}" class="btn btn-outline-dark">@lang('general.back')</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+@include('partials.datable', ['tableName' => 'company-table'])
 @endsection

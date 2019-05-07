@@ -10,7 +10,7 @@
                     <a href="{{ route('employee.create') }}" class="btn btn-outline-primary btn-add">
                             {{ trans('general.new', ['model' => trans('general.employee')]) }}
                     </a>
-                    <table class="table">
+                    <table class="table" id="employee-table">
                         <thead class="thead-light">
                             <tr>
                                 <th>@lang('attributes.first_name')</th>
@@ -22,10 +22,10 @@
                         <tbody>
                                 @foreach ($employees as $employee)
                                 <tr>
-                                    <th>{{ $employee->first_name }}</th>
-                                    <th>{{ $employee->last_name }}</th>
-                                    <th>{{ $employee->company->name }}</th>
-                                    <th>
+                                    <td>{{ $employee->first_name }}</td>
+                                    <td>{{ $employee->last_name }}</td>
+                                    <td>{{ $employee->company->name }}</td>
+                                    <td>
                                         <div class="btn-toolbar" role="toolbar" aria-label="">
                                             <div class="btn-group" role="group" aria-label="">
                                                 <a href="{{ route('employee.show', ['id'=>$employee->id]) }}" class="btn btn-sm btn-info">@lang('general.details')</a>
@@ -37,17 +37,16 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    </th>
+                                    </td>
                                 </tr>
                                 @endforeach
                         </tbody>
                     </table>
-                    {{ $employees->links() }}
                     <a href="{{ route('welcome') }}" class="btn btn-outline-dark">@lang('general.back')</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+@include('partials.datable', ['tableName' => 'employee-table'])
 @endsection
