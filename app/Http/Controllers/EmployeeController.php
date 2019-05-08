@@ -54,7 +54,7 @@ class EmployeeController extends Controller
     {
         //Log::debug($request);
         Employee::create($request->input());
-        return \redirect()->route('employee.index');
+        return \redirect()->route('employee.index')->with('message', 'Employee Stored')->with('message_type', 'success');
     }
 
     /**
@@ -101,7 +101,7 @@ class EmployeeController extends Controller
         $employee->save();
         Log::debug($employee);
         Log::debug($request);
-        return \redirect()->route('employee.index');
+        return \redirect()->route('employee.index')->with('message', 'Employee Updated')->with('message_type', 'success');
     }
 
     /**
@@ -113,6 +113,6 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         $employee->delete();
-        return \redirect()->route('employee.index');
+        return \redirect()->route('employee.index')->with('message', 'Employee Deleted')->with('message_type', 'warning');
     }
 }

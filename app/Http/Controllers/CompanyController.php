@@ -55,7 +55,7 @@ class CompanyController extends Controller
             $company->logo = $request->logo->store('', 'images');
             $company->save();
         }
-        return \redirect()->route('company.index');
+        return \redirect()->route('company.index')->with('message', 'Company Stored')->with('message_type', 'success');
     }
 
     /**
@@ -103,7 +103,7 @@ class CompanyController extends Controller
             $company->logo = $request->logo->store('', 'images');
             $company->save();
         }
-        return \redirect()->route('company.index');
+        return \redirect()->route('company.index')->with('message', 'Company Update')->with('message_type', 'success');
     }
 
     /**
@@ -115,6 +115,6 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         $company->delete();
-        return \redirect()->route('company.index');
+        return \redirect()->route('company.index')->with('message', 'Company Deleted')->with('message_type', 'warning');
     }
 }

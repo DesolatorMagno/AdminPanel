@@ -77,9 +77,17 @@
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
-            @yield('content')
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-10">
+                        <div class="card">
+                            @include('partials.msg')
+                            @yield('content')
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 </body>
