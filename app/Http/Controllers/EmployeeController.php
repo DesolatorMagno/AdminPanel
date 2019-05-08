@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use App\Employee;
+use App\Http\Requests\StoreEmployee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use App\Http\Requests\StoreEmployee;
 
 class EmployeeController extends Controller
 {
@@ -23,7 +23,7 @@ class EmployeeController extends Controller
     public function index()
     {
         $salida = [
-            'employees' => Employee::all(),
+            'employees' => Employee::with('company')->get(),
         ];
         return view('employee.index', $salida);
     }
@@ -36,9 +36,9 @@ class EmployeeController extends Controller
     public function create()
     {
         $salida = [
-            'type'    => 'store',
-            'employee' => "",
-            "companies" => Company::all()
+            'type'      => 'store',
+            'employee'  => "",
+            "companies" => Company::all(),
         ];
         return view('employee.actions', $salida);
         //
@@ -66,7 +66,7 @@ class EmployeeController extends Controller
     public function show(Employee $employee)
     {
         $salida = [
-            'type'    => 'show',
+            'type'     => 'show',
             'employee' => $employee->load('company'),
         ];
         return view('employee.actions', $salida);
@@ -81,9 +81,9 @@ class EmployeeController extends Controller
     public function edit(Employee $employee)
     {
         $salida = [
-            'type'    => 'update',
-            'employee' => $employee,
-            'companies' => Company::all()
+            'type'      => 'update',
+            'employee'  => $employee,
+            'companies' => Company::all(),
         ];
         return view('employee.actions', $salida);
     }
