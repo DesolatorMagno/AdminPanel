@@ -33,7 +33,7 @@
                                                 <form action="{{ route('employee.destroy', $employee->id) }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button class="btn btn-sm btn-danger">@lang('general.delete')</button>
+                                                    <button class="btn btn-sm btn-danger" type="button" onclick="deleteCompany(this)">@lang('general.delete')</button>
                                                 </form>
                                             </div>
                                         </div>
