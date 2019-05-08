@@ -24,4 +24,9 @@ class Company extends Model
     {
         return $this->hasMany('App\Employee');
     }
+
+    public function employeesCount()
+    {
+        return $this->employees()->count();
+    }
 }

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Company;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreCompany;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class CompanyController extends Controller
@@ -117,10 +117,13 @@ class CompanyController extends Controller
     {
         //TODO: Deleting a $company that have
         Log::debug($company);
-        if ($company->employees->isNotEmpty()) {
-            return \redirect()->route('company.index')->with('message', \trans("msg.company_with_employees") )->with('message_type', 'error');
+        if ($company->employeesCount()) {
+            return \redirect()->route('company.index')->with('message', \trans("msg.company_with_employees"))->with('message_type', 'error');
+        }
+        if ($company->logo) {
+            \Storage::disk('images')->delete($company->logo);
         }
         $company->delete();
-        return \redirect()->route('company.index')->with('message', \trans("msg.company_deleted"))->with('message_type', 'warning');
+        return \redirect()->route('company.index')->with('message', \trans("msg.company_delete"))->with('message_type', 'warning');
     }
 }
