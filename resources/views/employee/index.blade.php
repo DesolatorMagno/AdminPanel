@@ -10,8 +10,8 @@
                     <a href="{{ route('employee.create') }}" class="btn btn-outline-primary btn-add">
                             {{ trans('general.new', ['model' => trans('general.employee')]) }}
                     </a>
-                    <table class="table" id="employee-table">
-                        <thead class="thead-light">
+                    <table class="display" id="employee-table">
+                        <thead class="">
                             <tr>
                                 <th>@lang('attributes.first_name')</th>
                                 <th>@lang('attributes.last_name')</th>

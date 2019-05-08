@@ -20,7 +20,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @stack('style')
     <style>
-    html, body, card {
+
+    html, body {
         background-color: #323232;
     }
     .btn-add {
