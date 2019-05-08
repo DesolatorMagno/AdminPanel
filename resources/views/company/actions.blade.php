@@ -30,7 +30,7 @@
             @enderror
         </div>
 
-        @if ($company)
+        @if (isset($company->logo))
         <div>
             <img src="{{ $company->logo ? "$company->LogoUrl" : '' }}" alt="Company Logo" class="img-fluid img">
         </div>
