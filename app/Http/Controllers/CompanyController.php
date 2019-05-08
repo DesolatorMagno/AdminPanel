@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Company;
-use App\Http\Requests\StoreCompany;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCompany;
+use Illuminate\Support\Facades\Log;
 
 class CompanyController extends Controller
 {
@@ -55,7 +56,7 @@ class CompanyController extends Controller
             $company->logo = $request->logo->store('', 'images');
             $company->save();
         }
-        return \redirect()->route('company.index')->with('message', 'Company Stored')->with('message_type', 'success');
+        return \redirect()->route('company.index')->with('message', \trans("msg.company_create"))->with('message_type', 'success');
     }
 
     /**
@@ -103,7 +104,7 @@ class CompanyController extends Controller
             $company->logo = $request->logo->store('', 'images');
             $company->save();
         }
-        return \redirect()->route('company.index')->with('message', 'Company Update')->with('message_type', 'success');
+        return \redirect()->route('company.index')->with('message', \trans("msg.company_update"))->with('message_type', 'success');
     }
 
     /**
@@ -114,7 +115,12 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
+        //TODO: Deleting a $company that have
+        Log::debug($company);
+        if ($company->employees->isNotEmpty()) {
+            return \redirect()->route('company.index')->with('message', \trans("msg.company_with_employees") )->with('message_type', 'error');
+        }
         $company->delete();
-        return \redirect()->route('company.index')->with('message', 'Company Deleted')->with('message_type', 'warning');
+        return \redirect()->route('company.index')->with('message', \trans("msg.company_deleted"))->with('message_type', 'warning');
     }
 }

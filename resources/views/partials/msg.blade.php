@@ -1,13 +1,20 @@
 @if (session('message'))
-    <div id="message-div" class="alert alert-{{ session('message_type') }}">
-        <h3>{{ session('message') }}</h3>
-    </div>
     @push('scripts')
     <script>
-        function clearMessage() {
-            document.getElementById('message-div').setAttribute('hidden', true)
-        }
-        setTimeout(clearMessage, 4000)
+        function showMensage() {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 4000
+            });
+
+            Toast.fire({
+                type: "{{ session('message_type') }}",
+                text: "{{ session('message') }}"
+            })
+        };
+    showMensage();
     </script>
     @endpush
 @endif
