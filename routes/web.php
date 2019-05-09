@@ -21,5 +21,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/tema', 'HomeController@tema')->name('tema.index');
 
-Route::resource('employee', 'EmployeeController');
-Route::resource('company', 'CompanyController');
+Route::resource('employees', 'EmployeeController');
+Route::resource('companies', 'CompanyController');

@@ -5,7 +5,7 @@
 <div class="card-header">@lang('general.employee') @lang("actions.title_$type")</div>
 <div class="card-body">
 
-    <form action="{{ $type == 'store' ? route('employee.store') : route('employee.update', $employee->id) }}" role="form" method="post" enctype="multipart/form-data">
+    <form action="{{ $type == 'store' ? route('employees.store') : route('employees.update', $employee->id) }}" role="form" method="post" enctype="multipart/form-data">
         @csrf
         @if ($type == 'update')
         @method('PUT')
@@ -56,7 +56,7 @@
         </div>
         @endif
         <hr>
-        <a href="{{ route('employee.index') }}" class="btn btn-outline-dark">@lang('general.back')</a>
+        <a href="{{ route('employees.index') }}" class="btn btn-outline-dark">@lang('general.back')</a>
 
     <button type="submit" class="btn btn-outline-primary" {{ $type== "show" ? 'disabled hidden' : ''}}>@lang("actions.button_$type")</button>
     </form>

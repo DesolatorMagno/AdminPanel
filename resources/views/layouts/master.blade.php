@@ -55,6 +55,5 @@
     <script src="{{ asset('atlantis/assets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('atlantis/assets/js/core/bootstrap.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-
     @stack('scrypt')
 </html>
