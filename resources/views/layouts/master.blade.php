@@ -36,7 +36,6 @@
                 @include('layouts.navbar')
             </div>
             @include('layouts.sidebar')
-            @include('partials.msg')
 
             <div class="main-panel">
                 <div class="content">
@@ -55,5 +54,6 @@
     <script src="{{ asset('atlantis/assets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('atlantis/assets/js/core/bootstrap.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    @include('partials.msg')
     @stack('scrypt')
 </html>

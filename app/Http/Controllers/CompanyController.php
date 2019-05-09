@@ -55,7 +55,7 @@ class CompanyController extends Controller
             $company->logo = $request->logo->store('', 'images');
             $company->save();
         }
-        return \redirect()->route('company.index')->with('message', \trans("msg.company_create"))->with('message_type', 'success');
+        return \redirect()->route('companies.index')->with('message', \trans("msg.company_create"))->with('message_type', 'success');
     }
 
     /**
@@ -103,7 +103,7 @@ class CompanyController extends Controller
             $company->logo = $request->logo->store('', 'images');
             $company->save();
         }
-        return \redirect()->route('company.index')->with('message', \trans("msg.company_update"))->with('message_type', 'success');
+        return redirect()->route('companies.index')->with('message', trans("msg.company_update"))->with('message_type', 'success');
     }
 
     /**
@@ -116,13 +116,13 @@ class CompanyController extends Controller
     {
         //Log::debug($company);
         if ($company->employeesCount()) {
-            return \redirect()->route('company.index')->with('message', \trans("msg.company_with_employees"))->with('message_type', 'error');
+            return \redirect()->route('companies.index')->with('message', \trans("msg.company_with_employees"))->with('message_type', 'error');
         }
         if ($company->logo) {
             \Storage::disk('images')->delete($company->logo);
         }
         $company->delete();
 
-        return \redirect()->route('company.index')->with('message', \trans("msg.company_delete"))->with('message_type', 'warning');
+        return \redirect()->route('companies.index')->with('message', \trans("msg.company_delete"))->with('message_type', 'warning');
     }
 }

@@ -23,9 +23,9 @@ class EmployeeController extends Controller
     public function index()
     {
         $salida = [
-            'employees' => Employee::with('company')->get(),
+            'employees' => Employee::with('company:id,name')->get(),
         ];
-        return view('employee.index', $salida);
+        return view('employee.index', $salida);//->with('message', 'Employee Updated')->with('message_type', 'success');
     }
 
     /**
@@ -52,9 +52,8 @@ class EmployeeController extends Controller
      */
     public function store(StoreEmployee $request)
     {
-        //Log::debug($request);
         Employee::create($request->input());
-        return \redirect()->route('employee.index')->with('message', 'Employee Stored')->with('message_type', 'success');
+        return \redirect()->route('employees.index')->with('message', 'Employee Stored')->with('message_type', 'success');
     }
 
     /**
@@ -99,9 +98,9 @@ class EmployeeController extends Controller
     {
         $employee->update($request->input());
         $employee->save();
-        Log::debug($employee);
-        Log::debug($request);
-        return \redirect()->route('employee.index')->with('message', 'Employee Updated')->with('message_type', 'success');
+        //Log::debug($employee);
+        //Log::debug($request);
+        return redirect()->route('employees.index')->with('message', 'Employee Updated')->with('message_type', 'success');
     }
 
     /**
@@ -113,6 +112,6 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         $employee->delete();
-        return \redirect()->route('employee.index')->with('message', 'Employee Deleted')->with('message_type', 'warning');
+        return \redirect()->route('employees.index')->with('message', 'Employee Deleted')->with('message_type', 'warning');
     }
 }
