@@ -45,21 +45,16 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </body>
 
     <!-- Scripts -->
 
     <!--   Core JS Files   -->
-    <script src="../assets/js/core/jquery.3.2.1.min.js"></script>
-    <script src="../assets/js/core/popper.min.js"></script>
-    <script src="../assets/js/core/bootstrap.min.js"></script>
+    <script src="{{ asset('atlantis/assets/js/core/jquery.3.2.1.min.js') }}"></script>
+    <script src="{{ asset('atlantis/assets/js/core/popper.min.js') }}"></script>
+    <script src="{{ asset('atlantis/assets/js/core/bootstrap.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+    @stack('scrypt')
 </html>
-
-
-
-
-
