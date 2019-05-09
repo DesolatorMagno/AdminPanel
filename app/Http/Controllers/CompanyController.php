@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Company;
 use App\Http\Requests\StoreCompany;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class CompanyController extends Controller
 {
@@ -115,8 +114,7 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //TODO: Deleting a $company that have
-        Log::debug($company);
+        //Log::debug($company);
         if ($company->employeesCount()) {
             return \redirect()->route('company.index')->with('message', \trans("msg.company_with_employees"))->with('message_type', 'error');
         }
@@ -124,6 +122,7 @@ class CompanyController extends Controller
             \Storage::disk('images')->delete($company->logo);
         }
         $company->delete();
+
         return \redirect()->route('company.index')->with('message', \trans("msg.company_delete"))->with('message_type', 'warning');
     }
 }

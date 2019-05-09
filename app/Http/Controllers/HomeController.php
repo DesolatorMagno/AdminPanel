@@ -23,4 +23,9 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function tema()
+    {
+        return view('tema-index');
+    }
 }
