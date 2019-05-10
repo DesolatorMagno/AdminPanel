@@ -68,7 +68,7 @@
 
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#companies">
-                        <i class="fas fa-layer-group"></i>
+                        <i class="fas fa-building"></i>
                         <p>Companies</p>
                         <span class="caret"></span>
                     </a>
@@ -76,16 +76,22 @@
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('companies.index') }}">
-                                    <span class="sub-item">List</span>
+                                    <i class="fas fa-list"></i>
+                                    <span>@lang('general.listing')</span>
                                 </a>
                             </li>
-
+                            <li>
+                                <a href="{{ route('employees.create') }}">
+                                    <i class="fas fa-plus"></i>
+                                    <span class="">{{ trans('general.new', ['model' => trans('general.company')]) }}</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#employees">
-                        <i class="fas fa-layer-group"></i>
+                        <i class="fas fa-users"></i>
                         <p>Employees</p>
                         <span class="caret"></span>
                     </a>
@@ -93,7 +99,14 @@
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('employees.index') }}">
-                                    <span class="sub-item">List</span>
+                                    <i class="fas fa-list"></i>
+                                    <span>@lang('general.listing')</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('employees.create') }}">
+                                    <i class="fas fa-plus"></i>
+                                    <span>{{ trans('general.new', ['model' => trans('general.employee')]) }}</span>
                                 </a>
                             </li>
                         </ul>

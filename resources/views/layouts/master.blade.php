@@ -25,7 +25,6 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('atlantis/assets/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('atlantis/assets/css/atlantis.min.css') }}">
-
         @stack('style')
 
     </head>
