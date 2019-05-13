@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes(['register' => false]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@tema')->name('home');
 
 Route::get('/tema', 'HomeController@tema')->name('tema.index');
 
