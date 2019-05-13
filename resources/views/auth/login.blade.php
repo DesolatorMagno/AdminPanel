@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+@push('style')
+<style>
+    html, body {
+        background-color: #142433;
+        font-family: 'Nunito', sans-serif;
+        font-weight: 200;
+        height: 100vh;
+        margin: 0;
+    }
+</style>
+@endpush
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

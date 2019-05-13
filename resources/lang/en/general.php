@@ -20,5 +20,6 @@ return [
     'actions'             => 'Actions',
     'delete'              => 'Delete',
     'delete_confirmation' => 'Are you really sure?',
+    'dashboard'           => 'Dashboard',
 
 ];
