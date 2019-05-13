@@ -53,6 +53,20 @@
     <script src="{{ asset('atlantis/assets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('atlantis/assets/js/core/bootstrap.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+
+    <!-- jQuery UI -->
+    <script src="{{ asset('atlantis/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('atlantis/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js') }}"></script>
+
+	<!-- jQuery Scrollbar -->
+	<script src="{{ asset('atlantis/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js') }}"></script>
+
+	<!-- Atlantis JS -->
+
+
+    <!-- jQuery Scrollbar -->
+
     @include('partials.msg')
     @stack('scrypt')
 </html>
