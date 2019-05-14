@@ -63,10 +63,21 @@
 	<script src="{{ asset('atlantis/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js') }}"></script>
 
 	<!-- Atlantis JS -->
-
+    <script src="{{ asset('atlantis/assets/js/atlantis.min.js') }}"></script>
 
     <!-- jQuery Scrollbar -->
 
     @include('partials.msg')
+    <script>
+        function activateMenu(root, classList){
+            $("#" + root).collapse('show');
+            ele = document.getElementById(root)
+            ele.parentElement.classList.add('active')
+            if (classList) {
+               ele.getElementsByClassName(classList)[0].classList.add('active')
+            }
+        }
+    </script>
     @stack('scrypt')
+
 </html>

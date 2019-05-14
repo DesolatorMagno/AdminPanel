@@ -61,3 +61,8 @@
     </div>
 </div>
 @endsection
+@push('scrypt')
+<script>
+activateMenu('employees','li-list');
+</script>
+@endpush

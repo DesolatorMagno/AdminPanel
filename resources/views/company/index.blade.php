@@ -58,3 +58,8 @@
     </div>
 </div>
 @endsection
+@push('scrypt')
+<script>
+activateMenu('companies','li-list');
+</script>
+@endpush

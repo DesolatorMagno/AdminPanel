@@ -81,3 +81,12 @@
     }
 </style>
 @endpush
+@push('scrypt')
+<script>
+@if ($type == 'store')
+    activateMenu('employees','li-add');
+@else
+    activateMenu('employees','');
+@endif
+</script>
+@endpush

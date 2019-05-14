@@ -71,3 +71,12 @@
     }
 </style>
 @endpush
+@push('scrypt')
+<script>
+@if ($type == 'store')
+    activateMenu('companies','li-add');
+@else
+    activateMenu('companies','');
+@endif
+</script>
+@endpush
