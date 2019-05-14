@@ -81,7 +81,7 @@
                                 </a>
                             </li>
                             <li class="li-add">
-                                <a href="{{ route('employees.create') }}">
+                                <a href="{{ route('companies.create') }}">
                                     <i class="fas fa-plus"></i>
                                     <span class="">{{ trans('general.new', ['model' => trans('general.company')]) }}</span>
                                 </a>
