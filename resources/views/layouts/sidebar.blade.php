@@ -74,13 +74,13 @@
                     </a>
                     <div class="collapse" id="companies">
                         <ul class="nav nav-collapse">
-                            <li>
+                            <li class="li-list">
                                 <a href="{{ route('companies.index') }}">
                                     <i class="fas fa-list"></i>
                                     <span>@lang('general.listing')</span>
                                 </a>
                             </li>
-                            <li>
+                            <li class="li-add">
                                 <a href="{{ route('employees.create') }}">
                                     <i class="fas fa-plus"></i>
                                     <span class="">{{ trans('general.new', ['model' => trans('general.company')]) }}</span>
@@ -97,13 +97,13 @@
                     </a>
                     <div class="collapse" id="employees">
                         <ul class="nav nav-collapse">
-                            <li>
+                            <li class="li-list">
                                 <a href="{{ route('employees.index') }}">
                                     <i class="fas fa-list"></i>
                                     <span>@lang('general.listing')</span>
                                 </a>
                             </li>
-                            <li>
+                            <li class="li-add">
                                 <a href="{{ route('employees.create') }}">
                                     <i class="fas fa-plus"></i>
                                     <span>{{ trans('general.new', ['model' => trans('general.employee')]) }}</span>
