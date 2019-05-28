@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use App\Traits\MessageTrait;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCompany;
 use Illuminate\Support\Facades\Log;
 
 class CompanyController extends Controller
 {
+    use MessageTrait;
 
     public function __construct()
     {
@@ -52,12 +54,10 @@ class CompanyController extends Controller
     {
         $company = Company::create($request->input());
         if ($request->hasFile('logo')) {
-            //Log::debug('tiene logo');
-            //$company->logo = $request->logo->store('', 'images');
-            //$company->save();
             $company->storeTheFile('logo');
         }
-        return \redirect()->route('companies.index')->with('message', \trans("msg.company_create"))->with('message_type', 'success');
+        $this->success(trans("msg.company_create"));
+        return \redirect()->route('companies.index');
     }
 
     /**
@@ -99,12 +99,13 @@ class CompanyController extends Controller
      */
     public function update(StoreCompany $request, Company $company)
     {
-        Log::debug('message');
+        //Log::debug('message');
         $company->update($request->input());
         if ($request->hasFile('logo')) {
             $company->storeTheFile('logo');
         }
-        return redirect()->route('companies.index')->with('message', trans("msg.company_update"))->with('message_type', 'success');
+        $this->success(trans("msg.company_update"));
+        return redirect()->route('companies.index');
     }
 
     /**
@@ -123,7 +124,7 @@ class CompanyController extends Controller
             \Storage::disk('images')->delete($company->logo);
         }
         $company->delete();
-
-        return \redirect()->route('companies.index')->with('message', \trans("msg.company_delete"))->with('message_type', 'warning');
+        $this->warning(trans("msg.company_delete"));
+        return \redirect()->route('companies.index');
     }
 }
