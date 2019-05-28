@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Company;
-use App\Http\Requests\StoreCompany;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCompany;
+use Illuminate\Support\Facades\Log;
 
 class CompanyController extends Controller
 {
@@ -52,8 +53,9 @@ class CompanyController extends Controller
         $company = Company::create($request->input());
         if ($request->hasFile('logo')) {
             //Log::debug('tiene logo');
-            $company->logo = $request->logo->store('', 'images');
-            $company->save();
+            //$company->logo = $request->logo->store('', 'images');
+            //$company->save();
+            $company->storeTheFile('logo');
         }
         return \redirect()->route('companies.index')->with('message', \trans("msg.company_create"))->with('message_type', 'success');
     }
@@ -97,11 +99,10 @@ class CompanyController extends Controller
      */
     public function update(StoreCompany $request, Company $company)
     {
+        Log::debug('message');
         $company->update($request->input());
         if ($request->hasFile('logo')) {
-            \Storage::disk('images')->delete($company->logo);
-            $company->logo = $request->logo->store('', 'images');
-            $company->save();
+            $company->storeTheFile('logo');
         }
         return redirect()->route('companies.index')->with('message', trans("msg.company_update"))->with('message_type', 'success');
     }

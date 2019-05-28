@@ -2,10 +2,13 @@
 
 namespace App;
 
+use App\Traits\ModelFileManager;
 use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
 {
+    use ModelFileManager;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -14,6 +17,8 @@ class Company extends Model
     protected $fillable = [
         'name', 'website',
     ];
+
+    Protected $disk = 'images';
 
     public function getLogoUrlAttribute()
     {
@@ -28,5 +33,10 @@ class Company extends Model
     public function employeesCount()
     {
         return $this->employees()->count();
+    }
+
+    public function claseName()
+    {
+        return "class_basename($this)";
     }
 }
