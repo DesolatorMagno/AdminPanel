@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use App\Employee;
-use App\Http\Requests\StoreEmployee;
+use App\Traits\MessageTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use App\Http\Requests\StoreEmployee;
 
 class EmployeeController extends Controller
 {
+    use MessageTrait;
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -53,7 +56,8 @@ class EmployeeController extends Controller
     public function store(StoreEmployee $request)
     {
         Employee::create($request->input());
-        return \redirect()->route('employees.index')->with('message', 'Employee Stored')->with('message_type', 'success');
+        $this->success("Employee Stored");
+        return redirect()->route('employees.index');
     }
 
     /**
@@ -100,7 +104,8 @@ class EmployeeController extends Controller
         $employee->save();
         //Log::debug($employee);
         //Log::debug($request);
-        return redirect()->route('employees.index')->with('message', 'Employee Updated')->with('message_type', 'success');
+        $this->success("Employee Updated");
+        return redirect()->route('employees.index');
     }
 
     /**
@@ -112,6 +117,7 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         $employee->delete();
-        return \redirect()->route('employees.index')->with('message', 'Employee Deleted')->with('message_type', 'warning');
+        $this->warning("Employee Deleted");
+        return \redirect()->route('employees.index');
     }
 }

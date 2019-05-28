@@ -99,7 +99,6 @@ class CompanyController extends Controller
      */
     public function update(StoreCompany $request, Company $company)
     {
-        //Log::debug('message');
         $company->update($request->input());
         if ($request->hasFile('logo')) {
             $company->storeTheFile('logo');
@@ -118,7 +117,8 @@ class CompanyController extends Controller
     {
         //Log::debug($company);
         if ($company->employeesCount()) {
-            return \redirect()->route('companies.index')->with('message', \trans("msg.company_with_employees"))->with('message_type', 'error');
+            $this->error(trans("msg.company_with_employees"));
+            return \redirect()->route('companies.index');
         }
         if ($company->logo) {
             \Storage::disk('images')->delete($company->logo);
